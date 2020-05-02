@@ -16,6 +16,9 @@ class MyApp extends StatelessWidget {
           backgroundColor: kAppBarColor,
           title: Text(
             'GridView App',
+            style: TextStyle(
+              color: kAppBarTextColor,
+            ),
           ),
         ),
         body: gridController.createGridView(),
