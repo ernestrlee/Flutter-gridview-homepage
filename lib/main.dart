@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'constants.dart';
 
 void main() => runApp(MyApp());
 
@@ -74,7 +75,7 @@ class GridItem extends StatelessWidget {
     return Column(
       children: <Widget>[
         Expanded(
-          flex: 8,
+          flex: 6,
           child: Image(
             image: AssetImage(imageFileName),
           ),
