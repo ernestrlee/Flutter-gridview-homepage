@@ -4,10 +4,10 @@ import 'gridData.dart';
 import 'constants.dart';
 
 class GridController {
-
   Widget createGridView() {
     return GridView.count(
-      padding: EdgeInsets.fromLTRB(kGridViewLeftPadding, kGridViewTopPadding, kGridViewRightPadding, kGridViewBottomPadding),
+        padding: EdgeInsets.fromLTRB(kGridViewLeftPadding, kGridViewTopPadding,
+            kGridViewRightPadding, kGridViewBottomPadding),
         crossAxisCount: kGridViewNumberColumns,
         crossAxisSpacing: kGridViewHorizontalSpacing,
         mainAxisSpacing: kGridViewVerticalSpacing,
@@ -15,6 +15,7 @@ class GridController {
             .map((data) => GridItem(
                   imageFilename: data.imageFilename,
                   text: data.name,
+                  value: data.value,
                 ))
             .toList());
   }
