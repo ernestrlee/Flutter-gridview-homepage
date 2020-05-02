@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'gridItem.dart';
 import 'gridData.dart';
+import 'constants.dart';
 
 class GridController {
 
   Widget createGridView() {
     return GridView.count(
-      padding: EdgeInsets.all(15),
+      padding: EdgeInsets.fromLTRB(kLeftPadding, kTopPadding, kRightPadding, kBottomPadding),
         crossAxisCount: 3,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
