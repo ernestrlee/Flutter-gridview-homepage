@@ -2,18 +2,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class InfoRoute extends StatelessWidget {
+  final String appBarTitle;
+  final String text;
+
+  InfoRoute({this.appBarTitle, this.text});
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'text'
+          appBarTitle
         ),
       ),
       body: Center(
         child: Text(
-          'This is the body'
+          text
         ),
       ),
     );

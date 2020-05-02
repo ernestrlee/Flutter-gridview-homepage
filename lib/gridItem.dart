@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'infoRoute.dart';
 
 class GridItem extends StatelessWidget {
   final String imageFilename;
@@ -10,7 +11,17 @@ class GridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => print('$value pressed'),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => InfoRoute(
+              appBarTitle: text,
+              text: text,
+            ),
+          ),
+        );
+      },
       child: Column(
         children: <Widget>[
           Expanded(
