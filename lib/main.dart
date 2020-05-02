@@ -12,12 +12,18 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
         primaryColor: kAppBarColor,
-
       ),
       home: Scaffold(
         backgroundColor: kBackgroundColor,
         appBar: AppBar(
           backgroundColor: kAppBarColor,
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.settings),
+              tooltip: 'Settings',
+              onPressed: null,
+            ),
+          ],
           title: Text(
             'GridView App',
             style: TextStyle(
