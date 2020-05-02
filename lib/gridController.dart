@@ -7,10 +7,10 @@ class GridController {
 
   Widget createGridView() {
     return GridView.count(
-      padding: EdgeInsets.fromLTRB(kLeftPadding, kTopPadding, kRightPadding, kBottomPadding),
-        crossAxisCount: 3,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
+      padding: EdgeInsets.fromLTRB(kGridViewLeftPadding, kGridViewTopPadding, kGridViewRightPadding, kGridViewBottomPadding),
+        crossAxisCount: kGridViewNumberColumns,
+        crossAxisSpacing: kGridViewHorizontalSpacing,
+        mainAxisSpacing: kGridViewVerticalSpacing,
         children: _gridData
             .map((data) => GridItem(
                   imageFilename: data.imageFilename,
