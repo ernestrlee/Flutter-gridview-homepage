@@ -8,28 +8,28 @@ class BackgroundColorSetting extends StatefulWidget {
 
 class _BackgroundColorSettingState extends State<BackgroundColorSetting> {
   final String appBarTitle = 'Select background color';
-  String _selectedColor = "black";
+  String _selectedColor = "0xFF000000";
 
   final List backgroundColor = [
     {
       'name': 'Black',
-      'value': 'black',
+      'value': '0XFF000000',
     },
     {
       'name': 'Blue',
-      'value': 'blue',
+      'value': '0xFFB2EBF2',
     },
     {
       'name': 'Gray',
-      'value': 'gray',
+      'value': '0xFFBDBDBD',
     },
     {
       'name': 'Red',
-      'value': 'red',
+      'value': '0xFFFF8A80',
     },
     {
       'name': 'White',
-      'value': 'white',
+      'value': '0xFFFFFFFF',
     },
   ];
 
@@ -42,7 +42,7 @@ class _BackgroundColorSettingState extends State<BackgroundColorSetting> {
   void _loadColor() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      _selectedColor = (prefs.getString('backgroundColor') ?? 'red');
+      _selectedColor = (prefs.getString('backgroundColor') ?? '0xFF000000');
     });
   }
 
