@@ -10,3 +10,4 @@ const kGridViewBottomPadding = 25.0;
 const kGridViewHorizontalSpacing = 3.0;
 const kGridViewVerticalSpacing = 15.0;
 const kGridViewNumberColumns = 3;
+const kSettingsFontSize = 20.0;
