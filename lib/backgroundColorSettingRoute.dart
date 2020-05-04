@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class BackgroundColorSetting extends StatefulWidget {
   @override
@@ -7,10 +8,11 @@ class BackgroundColorSetting extends StatefulWidget {
 
 class _BackgroundColorSettingState extends State<BackgroundColorSetting> {
   final String appBarTitle = 'Select background color';
-  String _selectedColor = 'black';
+  String _selectedColor = "black";
+
   final List backgroundColor = [
     {
-      'name': 'black',
+      'name': 'Black',
       'value': 'black',
     },
     {
@@ -32,6 +34,27 @@ class _BackgroundColorSettingState extends State<BackgroundColorSetting> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _loadColor();
+  }
+
+  void _loadColor() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _selectedColor = (prefs.getString('backgroundColor') ?? 'red');
+    });
+  }
+
+  void _setColor(color) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _selectedColor = color;
+      prefs.setString('backgroundColor', color);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -49,13 +72,10 @@ class _BackgroundColorSettingState extends State<BackgroundColorSetting> {
               value: backgroundColor[index]['value'],
               groupValue: _selectedColor,
               onChanged: (value) {
-                setState(() {
-                  _selectedColor = backgroundColor[index]['value'];
-                });
+                _setColor(value);
               },
             ),
           );
-
         },
         separatorBuilder: (BuildContext context, int index) => Divider(),
       ),
