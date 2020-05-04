@@ -2,15 +2,43 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'gridController.dart';
 import 'settingsRoute.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 GridController gridController = GridController();
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String bgColor = 'FF000000';
+
+  @override
+  initState() {
+    super.initState();
+    _loadColor();
+  }
+
+  void _loadColor() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      bgColor = (prefs.getString('backgroundColor') ?? 'FF000000');
+    });
+  }
+
+  void setColor(color) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      bgColor = color;
+      prefs.setString('backgroundColor', color);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: Color(int.parse(bgColor, radix: 16)),
       appBar: AppBar(
         backgroundColor: kAppBarColor,
         actions: <Widget>[
@@ -38,7 +66,7 @@ class HomeScreen extends StatelessWidget {
       MaterialPageRoute(
           builder: (BuildContext context) {
             return SettingsRoute(
-              appBarTitle: 'Settings',
+              appBarTitle: 'Settings', callBack: setColor,
             );
           }
       ),

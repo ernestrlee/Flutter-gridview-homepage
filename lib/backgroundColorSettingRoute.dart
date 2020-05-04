@@ -2,34 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BackgroundColorSetting extends StatefulWidget {
+  Function setColor;
+  BackgroundColorSetting(this.setColor);
+
   @override
-  _BackgroundColorSettingState createState() => _BackgroundColorSettingState();
+  _BackgroundColorSettingState createState() => _BackgroundColorSettingState(setColor);
 }
 
 class _BackgroundColorSettingState extends State<BackgroundColorSetting> {
   final String appBarTitle = 'Select background color';
-  String _selectedColor = "0xFF000000";
+  Function setColor;
+  String _selectedColor;
+
+  _BackgroundColorSettingState(this.setColor);
 
   final List backgroundColor = [
     {
       'name': 'Black',
-      'value': '0XFF000000',
+      'value': 'FF000000',
     },
     {
       'name': 'Blue',
-      'value': '0xFFB2EBF2',
+      'value': 'FFB2EBF2',
     },
     {
       'name': 'Gray',
-      'value': '0xFFBDBDBD',
+      'value': 'FFBDBDBD',
     },
     {
       'name': 'Red',
-      'value': '0xFFFF8A80',
+      'value': 'FFFF8A80',
     },
     {
       'name': 'White',
-      'value': '0xFFFFFFFF',
+      'value': 'FFFFFFFF',
     },
   ];
 
@@ -42,7 +48,8 @@ class _BackgroundColorSettingState extends State<BackgroundColorSetting> {
   void _loadColor() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      _selectedColor = (prefs.getString('backgroundColor') ?? '0xFF000000');
+      _selectedColor = (prefs.getString('backgroundColor') ?? 'FF000000');
+
     });
   }
 
@@ -50,7 +57,8 @@ class _BackgroundColorSettingState extends State<BackgroundColorSetting> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       _selectedColor = color;
-      prefs.setString('backgroundColor', color);
+      //prefs.setString('backgroundColor', color);
+      setColor(color);
     });
   }
 
