@@ -8,9 +8,11 @@ class SettingsRoute extends StatelessWidget {
     'Background Color',
     'Font Color',
   ];
-  Function callBack;
 
-  SettingsRoute({this.appBarTitle, this.callBack});
+  Function backgroundColorCallback;
+  Function textColorCallback;
+
+  SettingsRoute({this.appBarTitle, this.backgroundColorCallback, this.textColorCallback});
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +56,7 @@ class SettingsRoute extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (BuildContext context) {
-        return BackgroundColorSetting(callBack);
+        return BackgroundColorSetting(backgroundColorCallback);
       }),
     );
   }

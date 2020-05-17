@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String bgColor = 'FF000000';
+  String textColor = 'FFFFFFFF';
 
   @override
   initState() {
@@ -27,11 +28,19 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  void setColor(color) async {
+  void setBackgroundColor(color) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       bgColor = color;
       prefs.setString('backgroundColor', color);
+    });
+  }
+
+  void setTextColor(color) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      textColor = color;
+      prefs.setString('textColor', color);
     });
   }
 
@@ -66,7 +75,9 @@ class _HomeScreenState extends State<HomeScreen> {
       MaterialPageRoute(
           builder: (BuildContext context) {
             return SettingsRoute(
-              appBarTitle: 'Settings', callBack: setColor,
+              appBarTitle: 'Settings',
+              backgroundColorCallback: setBackgroundColor,
+              textColorCallback: setTextColor,
             );
           }
       ),
