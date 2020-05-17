@@ -2,19 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BackgroundColorSetting extends StatefulWidget {
-  Function setColor;
+  final Function setColor;
   BackgroundColorSetting(this.setColor);
 
   @override
-  _BackgroundColorSettingState createState() => _BackgroundColorSettingState(setColor);
+  _BackgroundColorSettingState createState() => _BackgroundColorSettingState();
 }
 
 class _BackgroundColorSettingState extends State<BackgroundColorSetting> {
   final String appBarTitle = 'Select background color';
-  Function setColor;
+
   String _selectedColor;
 
-  _BackgroundColorSettingState(this.setColor);
+  _BackgroundColorSettingState();
 
   final List backgroundColor = [
     {
@@ -49,16 +49,13 @@ class _BackgroundColorSettingState extends State<BackgroundColorSetting> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       _selectedColor = (prefs.getString('backgroundColor') ?? 'FF000000');
-
     });
   }
 
   void _setColor(color) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       _selectedColor = color;
-      //prefs.setString('backgroundColor', color);
-      setColor(color);
+      widget.setColor(color);
     });
   }
 
