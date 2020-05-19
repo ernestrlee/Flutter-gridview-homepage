@@ -4,7 +4,7 @@ import 'gridData.dart';
 import 'constants.dart';
 
 class GridController {
-  Widget createGridView() {
+  Widget createGridView(textColor) {
     return GridView.count(
         padding: EdgeInsets.fromLTRB(kGridViewLeftPadding, kGridViewTopPadding,
             kGridViewRightPadding, kGridViewBottomPadding),
@@ -16,6 +16,7 @@ class GridController {
                   imageFilename: data.imageFilename,
                   text: data.name,
                   value: data.value,
+                  textColor: textColor,
                 ))
             .toList());
   }

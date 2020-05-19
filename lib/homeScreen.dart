@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: gridController.createGridView(),
+      body: gridController.createGridView(textColor),
     );
   }
 

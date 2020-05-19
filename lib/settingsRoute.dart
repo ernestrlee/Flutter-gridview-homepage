@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:gridviewhomepage/backgroundColorSettingRoute.dart';
+import 'backgroundColorSettingRoute.dart';
+import 'textColorSettingRoute.dart';
 import 'constants.dart';
 
 class SettingsRoute extends StatelessWidget {
   final String appBarTitle;
   final List<String> settingsList = [
     'Background Color',
-    'Font Color',
+    'Text Color',
   ];
 
-  Function backgroundColorCallback;
-  Function textColorCallback;
+  final Function backgroundColorCallback;
+  final Function textColorCallback;
 
   SettingsRoute({this.appBarTitle, this.backgroundColorCallback, this.textColorCallback});
 
@@ -56,7 +57,16 @@ class SettingsRoute extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (BuildContext context) {
-        return BackgroundColorSetting(backgroundColorCallback);
+        if (setting == 'Background Color') {
+          return BackgroundColorSetting(backgroundColorCallback);
+        }
+
+        else if (setting == 'Text Color') {
+          return TextColorSetting(textColorCallback);
+        }
+        else {
+          return null;
+        }
       }),
     );
   }

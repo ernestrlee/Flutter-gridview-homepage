@@ -5,8 +5,9 @@ class GridItem extends StatelessWidget {
   final String imageFilename;
   final String text;
   final String value;
+  String textColor = 'FFFFFF';
 
-  GridItem({this.imageFilename, this.text, this.value});
+  GridItem({this.imageFilename, this.text, this.value, this.textColor});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class GridItem extends StatelessWidget {
             child: Text(
               text,
               style: TextStyle(
-                color: Colors.white,
+                color: Color(int.parse(textColor, radix: 16)),
               ),
             ),
           ),
